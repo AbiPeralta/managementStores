@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getCoupons = void 0;
+exports.getCoupon = exports.getCoupons = void 0;
 var typeorm_1 = require("typeorm");
 var Coupons_1 = require("../entity/Coupons");
 var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -51,3 +51,15 @@ var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, 
     });
 }); };
 exports.getCoupons = getCoupons;
+var getCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var Coupon;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).findOne(req.params.customer_email)];
+            case 1:
+                Coupon = _a.sent();
+                return [2 /*return*/, res.json(Coupon)];
+        }
+    });
+}); };
+exports.getCoupon = getCoupon;

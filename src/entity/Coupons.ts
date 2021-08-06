@@ -1,5 +1,6 @@
 
-import {Entity, PrimaryGeneratedColumn, Column, Timestamp} from "typeorm";
+
+import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 @Entity({name:"coupons"})
 export  class Coupons {
@@ -14,10 +15,10 @@ export  class Coupons {
     address: Text;
 
     @Column({name:"expires_at"})
-    expiresAt: Timestamp;
+    expiresAt: Date;
 
     @Column({name:"assigned_at"})
-    assignedAt: Timestamp;
+    assignedAt: Date;
 
     @Column({name:"customer_email"})
     customerEmail:Text;

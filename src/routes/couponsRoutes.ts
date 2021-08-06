@@ -1,20 +1,15 @@
 import { Router } from "express";
-import { getCoupons } from '../repositories/CouponsRepository';
+import { getCoupons,getCoupon } from '../repositories/CouponsRepository';
 const router = Router();
 
 export default router;
 
 router.get('/coupons',getCoupons);
 
+
+router.get('/coupons/:customer_email',getCoupon);
+
 /*
-app.get('/coupons/:customer_email', (req, res) => {
-    console.log(req.params.customer_email)
-
-
-    res.json();
-})
-
-
 app.get('/coupons', (req, res) => {
     console.log(req.query.code);
 

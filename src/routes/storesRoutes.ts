@@ -1,22 +1,17 @@
 
 import { Router } from "express";
-import { getStore } from '../repositories/StoresRepository';
+import { getStores,getStore } from '../repositories/StoresRepository';
 const router = Router();
 
 export default router;
 
 
 
-router.get('/stores', getStore);
+router.get('/stores', getStores);
 
-/*app.get('/stores/:id', (req, res) => {
-    
+router.get('/stores/:name', getStore);
 
-
-    res.json();
-})
-
-
+/*
 app.get('/stores', (req, res) => {
     console.log(req.query.code);
 

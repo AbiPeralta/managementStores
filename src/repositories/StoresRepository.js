@@ -36,10 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getStore = void 0;
+exports.getStore = exports.getStores = void 0;
 var typeorm_1 = require("typeorm");
 var Stores_1 = require("../entity/Stores");
-var getStore = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var getStores = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var stores;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -47,6 +47,18 @@ var getStore = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
             case 1:
                 stores = _a.sent();
                 return [2 /*return*/, res.json(stores)];
+        }
+    });
+}); };
+exports.getStores = getStores;
+var getStore = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var Store;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, typeorm_1.getRepository(Stores_1.Stores).findOne(req.params.name)];
+            case 1:
+                Store = _a.sent();
+                return [2 /*return*/, res.json(Store)];
         }
     });
 }); };
