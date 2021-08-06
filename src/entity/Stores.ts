@@ -2,6 +2,7 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 @Entity({name:"stores"})
+
 export  class Stores {
 
     @PrimaryGeneratedColumn()

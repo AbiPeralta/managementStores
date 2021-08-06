@@ -1,11 +1,10 @@
-import { Router } from "express";
-import { getCoupons } from '../repositories/CouponsRepository';
-const router = Router();
-
-export default router;
-
-router.get('/coupons',getCoupons);
-
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var CouponsRepository_1 = require("../repositories/CouponsRepository");
+var router = express_1.Router();
+exports["default"] = router;
+router.get('/coupons', CouponsRepository_1.getCoupons);
 /*
 app.get('/coupons/:customer_email', (req, res) => {
     console.log(req.params.customer_email)

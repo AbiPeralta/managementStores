@@ -1,14 +1,10 @@
-
-import { Router } from "express";
-import { getStore } from '../repositories/StoresRepository';
-const router = Router();
-
-export default router;
-
-
-
-router.get('/stores', getStore);
-
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var StoresRepository_1 = require("../repositories/StoresRepository");
+var router = express_1.Router();
+exports["default"] = router;
+router.get('/stores', StoresRepository_1.getStore);
 /*app.get('/stores/:id', (req, res) => {
     
 
@@ -42,4 +38,4 @@ app.patch('/', (req, res) => {
 
 app.delete('/', (req, res) => {
     res.json();
-})*/
+})*/ 

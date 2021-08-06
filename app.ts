@@ -4,8 +4,8 @@ import "reflect-metadata";
 import { createConnection } from 'typeorm';
 import  dotenv from 'dotenv';
 import path from 'path';
-import couponsRoutes from './routes/couponsRoutes';
-import storesRoutes from './routes/storesRoutes';
+import couponsRoutes from './src/routes/couponsRoutes';
+import storesRoutes from './src/routes/storesRoutes';
 
 
 
@@ -33,4 +33,4 @@ app.use(storesRoutes);
 
 
 
-app.listen(process.env.PORT);
+app.listen(3306);

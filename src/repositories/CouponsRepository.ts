@@ -1,11 +1,11 @@
-import {AbstractRepository } from "./AbstractRepository";
+import { Request, Response } from "express";
+import { getRepository } from "typeorm";
+import { Coupons } from "../entity/Coupons";
 
-export class CouponsRepository extends AbstractRepository {
-    
-    public constructor(){
 
-        super()
+export const getCoupons = async (req: Request, res: Response): Promise<Response> => {
 
-        
-    }
-}
+    const coupons = await getRepository(Coupons).find();
+  
+    return res.json(coupons);
+  }

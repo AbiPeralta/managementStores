@@ -9,14 +9,14 @@
       "target": "es5",
       "module": "commonjs",
       "moduleResolution": "node",
-      "outDir": "./dist",
-      "rootDir": "./src",
+      //"outDir": "./dist",
+      "rootDir": "/",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames":true,
       "strict": true,
-       "strictPropertyInitialization": false
+      "strictPropertyInitialization": false
    }
 }
