@@ -6,7 +6,7 @@
          "DOM",
          "es2018"
       ],
-      "target": "es5",
+      "target": "es6",
       "module": "commonjs",
       "moduleResolution": "node",
       //"outDir": "./dist",

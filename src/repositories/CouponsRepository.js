@@ -36,9 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getCoupon = exports.getCoupons = void 0;
+exports.createCoupon = exports.getCoupon = exports.getCoupons = void 0;
 var typeorm_1 = require("typeorm");
 var Coupons_1 = require("../entity/Coupons");
+//get all coupons
 var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var coupons;
     return __generator(this, function (_a) {
@@ -51,15 +52,36 @@ var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, 
     });
 }); };
 exports.getCoupons = getCoupons;
+//get one coupon
 var getCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var Coupon;
+    var coupon;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).findOne(req.params.customer_email)];
+            case 0: return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).findOne(req.query)];
             case 1:
-                Coupon = _a.sent();
-                return [2 /*return*/, res.json(Coupon)];
+                coupon = _a.sent();
+                if (coupon) {
+                    return [2 /*return*/, res.status(200).json(coupon)];
+                }
+                return [2 /*return*/, res.status(404).json({ msg: 'Not found' })];
         }
     });
 }); };
 exports.getCoupon = getCoupon;
+//create new coupon
+var createCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var newCoupon, results;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                newCoupon = typeorm_1.getRepository(Coupons_1.Coupons).create(req.body);
+                if (!(newCoupon.length = 8)) return [3 /*break*/, 2];
+                return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).save(newCoupon)];
+            case 1:
+                results = _a.sent();
+                return [2 /*return*/, res.status(201).json(results)];
+            case 2: return [2 /*return*/, res.status(422).json({ message: 'Unprocessable Entity' })];
+        }
+    });
+}); };
+exports.createCoupon = createCoupon;

@@ -1,21 +1,18 @@
 import { Router } from "express";
-import { getCoupons,getCoupon } from '../repositories/CouponsRepository';
+import { getCoupons,getCoupon,createCoupon } from '../repositories/CouponsRepository';
 const router = Router();
 
 export default router;
 
 router.get('/coupons',getCoupons);
 
+// solicita 'email' y 'code' en el query string
+router.get('/coupons',getCoupon);
 
-router.get('/coupons/:customer_email',getCoupon);
+
+router.post('/coupons/:code',createCoupon);
 
 /*
-app.get('/coupons', (req, res) => {
-    console.log(req.query.code);
-
-    res.json();
-})
-
 app.post('/', (req, res) => {
     console.log(req.body)
 

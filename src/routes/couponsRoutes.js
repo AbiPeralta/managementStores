@@ -5,14 +5,10 @@ var CouponsRepository_1 = require("../repositories/CouponsRepository");
 var router = express_1.Router();
 exports["default"] = router;
 router.get('/coupons', CouponsRepository_1.getCoupons);
-router.get('/coupons/:customer_email', CouponsRepository_1.getCoupon);
+// solicita 'email' y 'code' en el query string
+router.get('/coupons', CouponsRepository_1.getCoupon);
+router.post('/coupons/:code', CouponsRepository_1.createCoupon);
 /*
-app.get('/coupons', (req, res) => {
-    console.log(req.query.code);
-
-    res.json();
-})
-
 app.post('/', (req, res) => {
     console.log(req.body)
 
