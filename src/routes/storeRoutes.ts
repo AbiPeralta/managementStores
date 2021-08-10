@@ -1,11 +1,15 @@
 
 import { Router } from "express";
-import { getStores,getStore } from '../repositories/StoresRepository';
+import { getStores, getStore } from '../controllers/StoresController';
 const router = Router();
 
 export default router;
 
-
+router.get('/ping', (req, res) => {
+  res.json({
+    data: 'pong'
+  });
+});
 
 router.get('/stores', getStores);
 
