@@ -5,7 +5,7 @@ import { Store } from "../entities/Store";
 
 export const getStores = async (req: Request, res: Response): Promise<Response> => {
 
-  const stores = await getRepository(Store).find();
+  const stores = await getRepository(Store).findAndCount();
 
   return res.json(Store);
 }

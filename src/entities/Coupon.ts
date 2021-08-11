@@ -20,8 +20,8 @@ export class Coupon {
   address: string;
 
   @Column({ name: "expires_at", type: "timestamp" })
-  expiresAt: Date;
+  expiresAt: string;
 
   @Column({ name: "assigned_at", type: "timestamp" })
-  assignedAt: Date;
+  assignedAt: string;
 }

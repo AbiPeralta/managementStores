@@ -24,7 +24,6 @@ router.post('/create', createCoupon);
 // assing user email to coupon
 router.patch('/edit/:code', editCoupon);
 
-
 router.delete('/coupons/:id', deleteCoupon);
 
 export default router;

@@ -1,9 +1,13 @@
+import "reflect-metadata";  
 import express from 'express';
 import morgan from 'morgan';
+import  dotenv from 'dotenv';
 import cors from 'cors';
 import { createConnection } from 'typeorm'
-
+import path from 'path';
 import routes from './routes'
+
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const app = express();
 createConnection();
