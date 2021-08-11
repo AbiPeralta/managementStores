@@ -7,7 +7,10 @@ export const cuponList = async (req: Request, res: Response): Promise<Response> 
 
   const coupons = await getRepository(Coupon).find();
 
-  return res.status(200).json(coupons);
+  return res.status(200).json({
+    status: 'success',
+    data: coupons
+  });
 }
 
 //get one coupon
@@ -27,9 +30,15 @@ export const getCoupon = async (req: Request, res: Response): Promise<Response> 
       throw new Error('Coupon Not found');
     }
 
-    return res.status(200).json(coupon);
+    return res.status(200).json({
+      status: 'success',
+      data: coupon
+    });
   } catch (error) {
-    return res.status(404).json(error);
+    return res.status(404).json({
+      status: 'error',
+      message: error.message
+    });
   }
 }
 
@@ -44,24 +53,28 @@ export const createCoupon = async (req: Request, res: Response): Promise<Respons
       throw new Error('The code must have 8 characters.');
     }
 
-    if (!/[0-9]+/i.test(code)) {
-      throw new Error('The code must contain numbers.');
-    }
-
-    if (!/[a-z]+/i.test(code)) {
-      throw new Error('The code must contain letters.');
+    if (!/[0-9a-z]+/i.test(code)) {
+      throw new Error('The code must contain letters and numbers.');
     }
 
     const newCoupon = getRepository(Coupon).create({
-      code
+      code,
+      customerEmail: '',
+      address: ''
     });
 
     const results = await getRepository(Coupon).save(newCoupon);
 
-    return res.status(201).json(results);
+    return res.status(201).json({
+      status: 'success',
+      data: results
+    });
 
   } catch (error) {
-    return res.status(422).json({ message: error });
+    return res.status(422).json({
+      status: 'error',
+      message: error.message 
+    });
   }
 }
 
@@ -91,9 +104,15 @@ export const editCoupon = async (req: Request, res: Response): Promise<Response>
 
     couponRepository.save(coupon);
   
-    return res.status(201).json(coupon); 
+    return res.status(201).json({
+      status: 'success',
+      data: coupon
+    }); 
   } catch (error) {
-    return res.status(422).json({ message: error });
+    return res.status(422).json({
+      status: 'error',
+      message: error.message
+    });
   }
 }
 
@@ -111,8 +130,14 @@ export const deleteCoupon = async (req: Request, res: Response): Promise<Respons
 
     couponRepository.delete(coupon);
     
-    return res.status(201).json(coupon); 
+    return res.status(201).json({
+      status: 'success',
+      data: coupon
+    }); 
   } catch (error) {
-    return res.status(404).json({ message: error });
+    return res.status(404).json({ 
+      status: 'error',
+      message: error.message
+    });
   }
 }

@@ -14,16 +14,16 @@ router.get('/ping', (req, res) => {
   });
 });
 
+router.get('/list', cuponList);
+
 // solicita 'email' y 'code' en el query string
 router.get('/check', getCoupon);
-
-router.get('/list', cuponList);
 
 router.post('/create', createCoupon);
 
 // assing user email to coupon
 router.patch('/edit/:code', editCoupon);
 
-router.delete('/coupons/:id', deleteCoupon);
+router.delete('/delete/:id', deleteCoupon);
 
 export default router;

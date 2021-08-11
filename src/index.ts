@@ -1,5 +1,6 @@
 import "reflect-metadata";  
 import express from 'express';
+import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import  dotenv from 'dotenv';
 import cors from 'cors';
@@ -12,9 +13,15 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 const app = express();
 createConnection();
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
+
 // Middlewares
 app.use(cors());
-app.use(express.json());
+//app.use(express.json());
 app.use(morgan('dev'));
 
 // routes
