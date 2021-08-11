@@ -1,6 +1,6 @@
 
 import { Router } from "express";
-import { getStores, getStore } from '../controllers/StoresController';
+import { storeList, getStore } from '../controllers/StoresController';
 const router = Router();
 
 export default router;
@@ -11,9 +11,9 @@ router.get('/ping', (req, res) => {
   });
 });
 
-router.get('/stores', getStores);
+router.get('/list', storeList);
 
-router.get('/stores/:name', getStore);
+router.get('view/:name', getStore);
 
 /*
 app.get('/stores', (req, res) => {

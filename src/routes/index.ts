@@ -7,6 +7,6 @@ import storeRoutes from './storeRoutes';
 // Export the base-router
 const baseRouter = Router();
 baseRouter.use('/coupon', couponRoutes);
-baseRouter.use('/store', couponRoutes);
+baseRouter.use('/store', storeRoutes);
 //baseRouter.use('/stat', couponRoutes);
 export default baseRouter;

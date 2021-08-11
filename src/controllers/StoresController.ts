@@ -1,13 +1,44 @@
 
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { getRepository, Like } from "typeorm";
 import { Store } from "../entities/Store";
 
-export const getStores = async (req: Request, res: Response): Promise<Response> => {
+export const storeList = async (req: Request, res: Response): Promise<Response> => {
+  let {
+    page,
+    name
+  } = req.query;
 
-  const stores = await getRepository(Store).findAndCount();
+  page = page ? page : 0; // if page is undefined save 0
+  
+  if (page == 1) {
+    page = 0;
+  }
 
-  return res.json(Store);
+  let offset = page * 10;
+
+  let findConfig: any = {
+    select: ['id', 'name', 'address'],
+    order: {
+      id: 'ASC',
+    }
+  }
+
+  if (name) {
+    findConfig.where = {
+      name: Like("%" + name + "%")
+    }
+  } else {
+    findConfig.skip = offset;
+    findConfig.take = 10
+  }
+  
+  const stores = await getRepository(Store).find(findConfig);
+
+  return res.status(200).json({
+    status: 'success',
+    data: stores
+  });
 }
 
 export const getStore = async (req: Request, res: Response): Promise<Response> => {
