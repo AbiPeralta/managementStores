@@ -3,7 +3,7 @@ import { getRepository } from "typeorm";
 import { Coupon } from "../entities/Coupon";
 
 //get all coupons
-export const cuponList = async (req: Request, res: Response): Promise<Response> => {
+export const couponList = async (req: Request, res: Response): Promise<Response> => {
 
   const coupons = await getRepository(Coupon).find();
 

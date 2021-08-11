@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  cuponList, 
+  couponList, 
   getCoupon, 
   createCoupon, 
   editCoupon, 
@@ -14,7 +14,7 @@ router.get('/ping', (req, res) => {
   });
 });
 
-router.get('/list', cuponList);
+router.get('/list', couponList);
 
 // solicita 'email' y 'code' en el query string
 router.get('/check', getCoupon);
