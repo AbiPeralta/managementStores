@@ -3,7 +3,10 @@ import { Request, Response } from "express";
 import { getRepository, Like } from "typeorm";
 import { Store } from "../entities/Store";
 
-export const storeList = async (req: Request, res: Response): Promise<Response> => {
+/**
+ * 
+ */
+const storeList = async (req: Request, res: Response): Promise<Response> => {
   let {
     page,
     name
@@ -42,17 +45,11 @@ export const storeList = async (req: Request, res: Response): Promise<Response> 
 }
 
 
-export const getStore = async (req: Request, res: Response): Promise<Response> => {
-
-  const store = await getRepository(Store).findOne(req.params.name);
-
-  return res.json(store);
-}
-
-
-
-export const createStore = async (req: Request, res: Response): Promise<Response> => {
-  const{
+/**
+ * 
+ */
+const createStore = async (req: Request, res: Response): Promise<Response> => {
+  const {
     address,
     name
   } = req.body;
@@ -66,36 +63,32 @@ export const createStore = async (req: Request, res: Response): Promise<Response
       throw Error('The code must contain name');
     }
 
-    const newStore =  storeRepository.create({
+    const newStore = storeRepository.create({
       address,
       name
     });
 
     const results = await storeRepository.save(newStore);
 
-
     return res.status(201).json({
       status: 'success',
       data: results
-    }); 
+    });
   } catch (error) {
     return res.status(422).json({
       status: 'error',
       message: error.message
     });
   }
- 
-
-  
-  }
-
-
-  
 
 
 
-//delete store
-export const deleteStore = async (req: Request, res: Response): Promise<Response> => {
+}
+
+/**
+ * 
+ */
+const deleteStore = async (req: Request, res: Response): Promise<Response> => {
   const { id } = req.params;
   const storeRepository = getRepository(Store);
 
@@ -118,4 +111,11 @@ export const deleteStore = async (req: Request, res: Response): Promise<Response
       message: error.message
     });
   }
+}
+
+// Revealing pattern
+export {
+  storeList,
+  createStore,
+  deleteStore
 }

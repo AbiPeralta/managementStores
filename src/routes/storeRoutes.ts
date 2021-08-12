@@ -1,6 +1,10 @@
 
 import { Router } from "express";
-import { storeList, getStore,createStore ,deleteStore} from '../controllers/StoresController';
+import { 
+  storeList, 
+  createStore, 
+  deleteStore
+} from '../controllers/StoresController';
 const router = Router();
 
 export default router;
@@ -12,8 +16,6 @@ router.get('/ping', (req, res) => {
 });
 
 router.get('/list', storeList);
-
-router.get('view/:name', getStore);
 
 router.post('/create',createStore);
 
